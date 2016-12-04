@@ -1,42 +1,66 @@
 $(document).ready(function(){
-    $(".lucka-src").hide();
-	console.log("doc ready!")
 
+	//24 calendar items, this will be randomized later
+	var daysToXmas = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 
-
-var daysToXmas = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+	//Here we get which day of the month it is today
+	var today = new Date();
+    var dd = today.getDate();
 
 
 	$.each(daysToXmas, function (index, value) {
 
-	var randomDay = daysToXmas[Math.floor(Math.random() * daysToXmas.length)];
+		/*
+		The following code snippet to pick out random array value. 
+		Borrowed from stackoverflow:
+		http://stackoverflow.com/questions/4550505/getting-random-value-from-an-array
+		*/
+		var randomDay = daysToXmas[Math.floor(Math.random() * daysToXmas.length)];
 
 		daysToXmas = jQuery.grep(daysToXmas, function(value) {
 		  return value != randomDay;
 		});
 
-		$(".calendar-panel").append(
-	      '<div class="col-xs-12 col-sm-6 col-md-3"><div class="panel panel-default"><div class="panel-body"><img class="img-responsive img-thumbnail lucka-src hidden" src="assets/image/'+ randomDay +'.jpg"><img class="img-responsive img-thumbnail lucka-placeholder" src="assets/image/placeholder.jpg"></div></div></div>');   
+		/*
+		Append a advent calendar item under the "calendar-panel" element in DOM
+		*/
+		$(".calendar-panel").append('<div class="col-xs-12 col-sm-6 col-md-3"><div class="panel panel-default"><div id="' + randomDay + '" class="panel-body image"><img id="luckbild-' + randomDay + '" class="img-responsive img-thumbnail" src="assets/image/' + randomDay + '.jpg"><h2 id="lucka-' + randomDay + '">' + randomDay + '</h2></div></div></div>');  
+		/*
+		The above will append the following block to the DOM tree (assuming "randomDay=1")
+		
+		<div class="col-xs-12 col-sm-6 col-md-3">
+        	<div class="panel panel-default">
+          		<div id="1" class="panel-body image">
+            		<img id="luckbild-1" class="img-responsive img-thumbnail" src="assets/image/1.jpg">
+            		<h2 id="lucka-1">1</h2>    
+          		</div>
+        	</div>
+      	</div>
 
+		*/
 
-		//console.log(value);
-		console.log(randomDay);
 	    
+	    //Stop doing this when we have added 24 items
 		return (value !== '24');
 	}); 
-      
 
-	$(".lucka-placeholder").bind('click', function() {
-	  console.log("öppnar lucka")
-	  $(".lucka-placeholder").addClass('hidden');
-	  $(".lucka-src").removeClass('hidden');
+	/*
+	This is where we open an advent item.
+	When opening, we set the IMG opacity to 1 
+	and then adds class hidden to the h2 containing the advent number
+
+	An advent item will only open if its ID is less than or equal todays date.
+	*/
+	$(".image").bind('click', function() {
+		var myID = $(this).attr('id');
+
+	    if(myID <= dd){
+			$("#luckbild-" + myID).css({ opacity: 1 });
+			$("#luckbild-" + myID).addClass('opened');
+			$("#lucka-" + myID).addClass('hidden'); 
+    	}
+    	else{
+    		//need to add something nice here
+    	}
 	});
-
-	$(".lucka-src").bind('click', function() {
-	  console.log("stänger lucka")
-	  $(".lucka-src").addClass('hidden');
-	  $(".lucka-placeholder").removeClass('hidden');
-	});
-
-
 });
