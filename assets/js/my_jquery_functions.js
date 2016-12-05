@@ -7,6 +7,9 @@ $(document).ready(function(){
 	var today = new Date();
     var dd = today.getDate();
 
+    //init the date cheat form with todays date.
+    $("#setDate").val(dd);
+
 
 	$.each(daysToXmas, function (index, value) {
 
@@ -43,6 +46,15 @@ $(document).ready(function(){
 	    //Stop doing this when we have added 24 items
 		return (value !== '24');
 	}); 
+
+	/*
+	Input form to allow user to "cheat" on todays date, 
+	for a sneak preview of future items
+	*/
+	$('select').on('change', function() {
+	  dd = this.value;
+	})
+	
 
 	/*
 	This is where we open an advent item.
