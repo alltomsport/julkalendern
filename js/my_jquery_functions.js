@@ -52,15 +52,33 @@ $(document).ready(function(){
 	An advent item will only open if its ID is less than or equal todays date.
 	*/
 	$(".image").bind('click', function() {
+
 		var myID = $(this).attr('id');
 
+		/*
+		Check so we are allowed to reveal the clicked item
+		*/
 	    if(myID <= dd){
-			$("#luckbild-" + myID).css({ opacity: 1 });
-			$("#luckbild-" + myID).addClass('opened');
-			$("#lucka-" + myID).addClass('hidden'); 
+	    	/*
+	    	Check if the clicked item is already opened. 
+	    	In that case, we close it.
+	    	*/
+			if($("#luckbild-" + myID).hasClass('opened')){
+				$("#luckbild-" + myID).css({ opacity: 0 });
+				$("#luckbild-" + myID).removeClass('opened');
+				$("#lucka-" + myID).removeClass('hidden'); 
+			}
+			/*
+			If the clicked item is not already open, reveal it now
+			*/
+			else{
+				$("#luckbild-" + myID).css({ opacity: 1 });
+				$("#luckbild-" + myID).addClass('opened');
+				$("#lucka-" + myID).addClass('hidden'); 
+			}
     	}
     	else{
-    		//need to add something nice here
+    		console.log("nope!");
     	}
 	});
 });
