@@ -77,8 +77,12 @@ $(document).ready(function(){
 				$("#lucka-" + myID).addClass('hidden'); 
 			}
     	}
+    	/*
+    	If we are not allowed to reveal clicked item, 
+    	display a short shake effect
+    	*/
     	else{
-    		console.log("nope!");
+    		$(this).effect( "shake" );
     	}
 	});
 });
