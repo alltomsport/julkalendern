@@ -2,19 +2,113 @@ img{
 	opacity: 0;
 }
 
+body{
+    background-color: #f4faff;
+    padding-left: 10px;
+    padding-right: 10px; 
+}
+
 .image { 
 	position: relative; 
 	width: 100%; /* for IE 6 */
 }
 
+small{
+    padding-left: 10px;
+    padding-bottom: 30px;
+    font-size: 12px;
+    color: #5d6f7c;
+}
+
 h2 { 
-	position: absolute; 
-	left: 0;
+    position: absolute;
     top: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
     font-family: 'Abril Fatface',cursive;
-    color: #EA4E1D;
+    color: #d10202;
+    font-size: 100px;
+}
+h1 { 
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Abril Fatface',cursive;
+    color: #d10202;
     font-size: 40px;
+}
 
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+    h2 { 
+        font-size: 40px;
+    }
+}
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    h2 { 
+        font-size: 40px;
+    }
+}
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    h2 { 
+        font-size: 70px;
+    }
+    h1 { 
+        font-size: 70px;
+    }
+}
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    h2 { 
+        font-size: 80px;
+    }
+    h1 { 
+        font-size: 80px;
+    }
+}
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    h2 { 
+        font-size: 60px;
+    }
+    h1 { 
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 380px) {
+    h2 { 
+        font-size: 50px;
+    }
+    h1 { 
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 280px) {
+    h2 { 
+        font-size: 50px;
+    }
+    h1 { 
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 240px) {
+    h2 { 
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 200px) {
+h2 { 
+        font-size: 20px;
+    }
+    h1 { 
+        font-size: 20px;
+    }
 }

@@ -24,11 +24,11 @@ $(document).ready(function(){
 		/*
 		Append a advent calendar item under the "calendar-panel" element in DOM
 		*/
-		$(".calendar-panel").append('<div class="col-xs-12 col-sm-6 col-md-3"><div class="panel panel-default"><div id="' + randomDay + '" class="panel-body image"><img id="luckbild-' + randomDay + '" class="img-responsive img-thumbnail" src="assets/image/' + randomDay + '.jpg"><h2 id="lucka-' + randomDay + '">' + randomDay + '</h2></div></div></div>');  
+		$(".calendar-panel").append('<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2"><div class="panel panel-default"><div id="' + randomDay + '" class="panel-body image"><img id="luckbild-' + randomDay + '" class="img-responsive img-thumbnail" src="assets/image/' + randomDay + '.jpg"><h2 id="lucka-' + randomDay + '">' + randomDay + '</h2></div></div></div>');  
 		/*
 		The above will append the following block to the DOM tree (assuming "randomDay=1")
 		
-		<div class="col-xs-12 col-sm-6 col-md-3">
+		<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
         	<div class="panel panel-default">
           		<div id="1" class="panel-body image">
             		<img id="luckbild-1" class="img-responsive img-thumbnail" src="assets/image/1.jpg">
@@ -52,15 +52,37 @@ $(document).ready(function(){
 	An advent item will only open if its ID is less than or equal todays date.
 	*/
 	$(".image").bind('click', function() {
+
 		var myID = $(this).attr('id');
 
+		/*
+		Check so we are allowed to reveal the clicked item
+		*/
 	    if(myID <= dd){
-			$("#luckbild-" + myID).css({ opacity: 1 });
-			$("#luckbild-" + myID).addClass('opened');
-			$("#lucka-" + myID).addClass('hidden'); 
+	    	/*
+	    	Check if the clicked item is already opened. 
+	    	In that case, we close it.
+	    	*/
+			if($("#luckbild-" + myID).hasClass('opened')){
+				$("#luckbild-" + myID).css({ opacity: 0 });
+				$("#luckbild-" + myID).removeClass('opened');
+				$("#lucka-" + myID).removeClass('hidden'); 
+			}
+			/*
+			If the clicked item is not already open, reveal it now
+			*/
+			else{
+				$("#luckbild-" + myID).css({ opacity: 1 });
+				$("#luckbild-" + myID).addClass('opened');
+				$("#lucka-" + myID).addClass('hidden'); 
+			}
     	}
+    	/*
+    	If we are not allowed to reveal clicked item, 
+    	display a short shake effect with jQuery UI.
+    	*/
     	else{
-    		//need to add something nice here
+    		$(this).effect( "shake" );
     	}
 	});
 });
