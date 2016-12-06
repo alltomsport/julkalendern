@@ -50,10 +50,11 @@ $(document).ready(function(){
 	/*
 	Input form to allow user to "cheat" on todays date, 
 	for a sneak preview of future items
-	*/
+	
 	$('select').on('change', function() {
 	  dd = this.value;
 	})
+	*/
 	
 
 	/*
@@ -67,10 +68,19 @@ $(document).ready(function(){
 
 		var myID = $(this).attr('id');
 
+		var dateFromInput = $( "#setDate" ).val();
+		//dd = ("#setDate").val();
+		
+		console.log();
+		console.log("new click");
+    	console.log("myid is: --" + myID + "-- and dateFromInput is: --" + dateFromInput + "--");
+    	console.log("myID <= dateFromInput = "+ (myID <= dateFromInput));
+		console.log("end click");
+		console.log();
 		/*
 		Check so we are allowed to reveal the clicked item
 		*/
-	    if(myID <= dd){
+	    if(myID <= dateFromInput){
 	    	/*
 	    	Check if the clicked item is already opened. 
 	    	In that case, we close it.
